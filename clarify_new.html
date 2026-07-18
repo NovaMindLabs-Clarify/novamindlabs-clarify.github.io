@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth scroll-pt-24">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clarify Nexus — Task Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-50 font-sans antialiased">
+
+    <!-- Залипающая шапка (Sticky Navbar) с эффектом стекла -->
+    <div class="sticky top-0 z-50 bg-slate-900/85 backdrop-blur-md border-b border-slate-800">
+        <nav class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold tracking-tighter text-indigo-400">Clarify Nexus</div>
+            <div class="flex items-center space-x-6 text-sm font-medium">
+                <!-- Ссылки навигации -->
+                <a href="#features" class="hover:text-indigo-400 transition">
+                    <span class="lang-ru">Фичи</span><span class="lang-en hidden">Features</span>
+                </a>
+                <a href="#security" class="hover:text-indigo-400 transition">
+                    <span class="lang-ru">Безопасность</span><span class="lang-en hidden">Security</span>
+                </a>
+                <a href="https://github.com" target="_blank" class="hover:text-indigo-400 transition">GitHub</a>
+                
+                <!-- Кнопка переключения языка -->
+                <button onclick="toggleLanguage()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-md transition font-bold text-indigo-400">
+                    <span class="lang-ru">EN</span>
+                    <span class="lang-en hidden">RU</span>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Главный экран -->
+    <header class="max-w-4xl mx-auto px-6 pt-20 pb-16 text-center">
+        <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6">
+            <span class="lang-ru">От хаоса к системе.</span><span class="lang-en hidden">From chaos to system.</span> <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
+                <span class="lang-ru">Без выгорания.</span><span class="lang-en hidden">No burnout.</span>
+            </span>
+        </h1>
+        <p class="text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+            <span class="lang-ru">Мощный таск-трекер для соло-разработчиков и команд. Фокусируйся на главном с Zen Mode, делегируй рутину AI-Ассистенту и держи руку на пульсе проекта.</span>
+            <span class="lang-en hidden">A powerful task tracker for solo developers and teams. Focus on what matters with Zen Mode, delegate routine to the AI Assistant, and keep your finger on the project's pulse.</span>
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="#" class="px-8 py-4 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold rounded-lg shadow-lg shadow-indigo-500/30 transition">
+                <span class="lang-ru">Скачать Beta (Windows)</span><span class="lang-en hidden">Download Beta (Windows)</span>
+            </a>
+            <a href="#features" class="px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-lg transition border border-slate-700">
+                <span class="lang-ru">Узнать больше</span><span class="lang-en hidden">Learn more</span>
+            </a>
+        </div>
+        
+        <div class="mt-20 rounded-xl overflow-hidden border border-slate-700 shadow-2xl shadow-indigo-900/20 bg-slate-800 aspect-video flex items-center justify-center">
+            <span class="text-slate-500 font-medium">
+                <span class="lang-ru">Здесь будет красивый скриншот интерфейса Clarify</span>
+                <span class="lang-en hidden">A beautiful screenshot of Clarify interface will be here</span>
+            </span>
+        </div>
+    </header>
+
+    <!-- Блок с фичами -->
+    <section id="features" class="max-w-6xl mx-auto px-6 py-24">
+        <h2 class="text-3xl font-bold text-center mb-16">
+            <span class="lang-ru">Инструменты для продуктивности</span><span class="lang-en hidden">Productivity Tools</span>
+        </h2>
+        <div class="grid md:grid-cols-2 gap-8">
+            
+            <div class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700/50 hover:border-indigo-500/50 transition">
+                <div class="text-4xl mb-4">🧘</div>
+                <h3 class="text-xl font-bold mb-3">Zen Mode</h3>
+                <p class="text-slate-400">
+                    <span class="lang-ru">Режим глубокой фокусировки. Отключает визуальный шум и уведомления, оставляя вас один на один с текущей задачей.</span>
+                    <span class="lang-en hidden">Deep focus mode. Disables visual noise and notifications, leaving you one-on-one with the current task.</span>
+                </p>
+            </div>
+
+            <div class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700/50 hover:border-indigo-500/50 transition">
+                <div class="text-4xl mb-4">🤖</div>
+                <h3 class="text-xl font-bold mb-3">
+                    <span class="lang-ru">AI-Ассистент</span><span class="lang-en hidden">AI Assistant</span>
+                </h3>
+                <p class="text-slate-400">
+                    <span class="lang-ru">Умный помощник распознает текст, помогает формулировать задачи и быстро распределять их по воркспейсам.</span>
+                    <span class="lang-en hidden">Smart helper recognizes text, helps formulate tasks, and quickly distributes them across workspaces.</span>
+                </p>
+            </div>
+
+            <div class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700/50 hover:border-indigo-500/50 transition">
+                <div class="text-4xl mb-4">❤️‍🔥</div>
+                <h3 class="text-xl font-bold mb-3">Team Pulse</h3>
+                <p class="text-slate-400">
+                    <span class="lang-ru">Аналитика нагрузки и радар выгорания. Система подскажет, если вы или члены команды взяли на себя слишком много.</span>
+                    <span class="lang-en hidden">Workload analytics and burnout radar. The system will alert you if you or your team members have taken on too much.</span>
+                </p>
+            </div>
+
+            <div class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700/50 hover:border-indigo-500/50 transition">
+                <div class="text-4xl mb-4">⚡</div>
+                <h3 class="text-xl font-bold mb-3">
+                    <span class="lang-ru">Мгновенная синхронизация</span><span class="lang-en hidden">Instant Synchronization</span>
+                </h3>
+                <p class="text-slate-400">
+                    <span class="lang-ru">Единый формат дат и мгновенное обновление состояния между локальной кэш-базой и облаком.</span>
+                    <span class="lang-en hidden">Unified date format and instant state updates between the local cache database and the cloud.</span>
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Блок безопасности -->
+    <section id="security" class="bg-slate-950 py-24 border-y border-slate-800">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-6">
+                <span class="lang-ru">Enterprise-уровень безопасности</span><span class="lang-en hidden">Enterprise-grade Security</span>
+            </h2>
+            <p class="text-slate-400 mb-10 text-lg">
+                <span class="lang-ru">Мы знаем, как важна сохранность данных. Clarify построен на надежном стеке:</span>
+                <span class="lang-en hidden">We know how important data safety is. Clarify is built on a reliable stack:</span> 
+                <span class="text-indigo-400">Flutter</span>, 
+                <span class="text-green-400">Supabase</span>, 
+                <span class="text-cyan-400">FastAPI</span>.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 text-sm font-medium">
+                <span class="px-4 py-2 bg-slate-800 rounded-full border border-slate-700">
+                    <span class="lang-ru">Зашифрованное хранилище</span><span class="lang-en hidden">Encrypted Storage</span>
+                </span>
+                <span class="px-4 py-2 bg-slate-800 rounded-full border border-slate-700">
+                    <span class="lang-ru">Политики доступа RLS</span><span class="lang-en hidden">RLS Access Policies</span>
+                </span>
+                <span class="px-4 py-2 bg-slate-800 rounded-full border border-slate-700">
+                    <span class="lang-ru">Защищенное API</span><span class="lang-en hidden">Secured API</span>
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer class="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm">
+        <div class="mb-4 md:mb-0">
+            &copy; 2026 Clarify Nexus. <span class="lang-ru">Все права защищены.</span><span class="lang-en hidden">All rights reserved.</span>
+        </div>
+        <div class="space-x-6">
+            <a href="mailto:support@clarify.com" class="hover:text-slate-300 transition">
+                <span class="lang-ru">Поддержка</span><span class="lang-en hidden">Support</span>
+            </a>
+            <a href="privacy.html" class="hover:text-slate-300 transition font-medium text-slate-400">
+                <span class="lang-ru">Политика конфиденциальности</span><span class="lang-en hidden">Privacy Policy</span>
+            </a>
+        </div>
+    </footer>
+
+    <!-- Скрипт переключения языка -->
+    <script>
+        function toggleLanguage() {
+            // Находим все элементы с классом lang-ru и lang-en
+            const ruElements = document.querySelectorAll('.lang-ru');
+            const enElements = document.querySelectorAll('.lang-en');
+            
+            // Переключаем видимость (класс hidden)
+            ruElements.forEach(el => el.classList.toggle('hidden'));
+            enElements.forEach(el => el.classList.toggle('hidden'));
+        }
+    </script>
+</body>
+</html>
