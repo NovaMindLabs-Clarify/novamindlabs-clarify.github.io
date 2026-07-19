@@ -1,169 +1,282 @@
 <!DOCTYPE html>
-<html lang="ru" class="scroll-smooth scroll-pt-24">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clarify — Task Management</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clarify — приложение-планировщик задач</title>
+  <meta name="description" content="Clarify — простое приложение для планирования задач, которое помогает навести порядок в делах без лишней сложности.">
+
+  <meta property="og:title" content="Clarify — приложение-планировщик задач">
+  <meta property="og:description" content="Простое приложение для планирования задач, которое помогает навести порядок в делах без лишней сложности.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/logo.png">
+
+  <!-- Favicon (generated from assets/logo.png, resize only) -->
+  <link rel="icon" href="assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon/favicon-512.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/favicon-180.png">
+
+  <!-- Preload critical font weight for <h1> (Unbounded 700, cyrillic subset —
+       the page is lang="ru", cyrillic glyphs are what the h1 will render) -->
+  <link rel="preload" href="assets/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-slate-900 text-slate-50 font-sans antialiased">
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
 
-    <!-- Залипающая шапка (Sticky Navbar) с эффектом стекла -->
-    <div class="sticky top-0 z-50 bg-slate-900/85 backdrop-blur-md border-b border-slate-800">
-        <nav class="max-w-6xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center gap-4">
-            
-            <!-- Логотип: запрещаем сужаться (shrink-0) и переноситься (whitespace-nowrap) -->
-            <div class="text-2xl font-bold tracking-tighter text-indigo-400 whitespace-nowrap shrink-0">Clarify</div>
-            
-            <!-- Меню: адаптируем отступы для мобилок (space-x-3) и ПК (md:space-x-6) -->
-            <div class="flex items-center space-x-3 md:space-x-6 text-sm font-medium">
-                <!-- Ссылки навигации -->
-                <a href="#features" class="hover:text-indigo-400 transition whitespace-nowrap">
-                    <span class="lang-ru">Фичи</span><span class="lang-en hidden">Features</span>
-                </a>
-                <a href="#security" class="hover:text-indigo-400 transition whitespace-nowrap">
-                    <span class="lang-ru">Безопасность</span><span class="lang-en hidden">Security</span>
-                </a>
-                <a href="https://github.com/NovaMindLabs-Clarify" target="_blank" class="hover:text-indigo-400 transition whitespace-nowrap">GitHub</a>
-                
-                <!-- Кнопка переключения языка -->
-                <button onclick="toggleLanguage()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-md transition font-bold text-indigo-400 shrink-0">
-                    <span class="lang-ru">EN</span>
-                    <span class="lang-en hidden">RU</span>
-                </button>
-            </div>
-        </nav>
+  <header class="header">
+    <div class="header__inner">
+      <a class="header__brand" href="#main" aria-label="Clarify — на главную">
+        <img class="header__logo" src="assets/logo.png" alt="" width="36" height="36">
+        <span class="header__wordmark">Clarify</span>
+      </a>
+
+      <button class="header__toggle" type="button"
+              aria-expanded="false" aria-controls="primary-nav"
+              aria-label="Открыть меню">
+        <span class="header__toggle-bar" aria-hidden="true"></span>
+        <span class="header__toggle-bar" aria-hidden="true"></span>
+        <span class="header__toggle-bar" aria-hidden="true"></span>
+      </button>
+
+      <nav class="header__nav" id="primary-nav" aria-label="Основная">
+        <ul class="header__nav-list">
+          <li><a class="header__nav-link" href="#benefits">Преимущества</a></li>
+          <li><a class="header__nav-link" href="#how-it-works">Как это работает</a></li>
+          <li><a class="header__nav-link" href="#testimonials">Отзывы</a></li>
+        </ul>
+        <!-- TODO(product owner): real download URL / app store link is TBD —
+             replace href="#download" once provided. Do not invent a URL. -->
+        <a class="btn btn--primary header__cta" href="#download">Скачать</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- Главный экран -->
-    <header class="max-w-4xl mx-auto px-6 pt-20 pb-16 text-center">
-        <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6">
-            <span class="lang-ru">От хаоса к системе.</span><span class="lang-en hidden">From chaos to system.</span> <br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
-                <span class="lang-ru">Без выгорания.</span><span class="lang-en hidden">No burnout.</span>
+  <main id="main">
+    <section class="hero" id="hero">
+      <div class="hero__inner">
+        <div class="hero__content">
+          <h1 class="hero__title">Из хаоса дел — в понятный план на день</h1>
+          <p class="hero__subtitle">
+            Clarify собирает все ваши задачи, встречи и напоминания в одном месте
+            и подсказывает, за что взяться прямо сейчас. Ничего не потеряется и не забудется.
+          </p>
+          <div class="hero__cta-group">
+            <!-- TODO(product owner): real download URL / app store link is TBD —
+                 replace href="#download" once provided. Do not invent a URL. -->
+            <a class="btn btn--primary hero__cta" href="#download">Скачать приложение</a>
+            <a class="hero__secondary" href="https://novamindlabs-clarify.github.io/">О проекте</a>
+          </div>
+        </div>
+
+        <div class="hero__visual">
+          <span class="hero__shape hero__shape--1" aria-hidden="true"></span>
+          <span class="hero__shape hero__shape--2" aria-hidden="true"></span>
+          <span class="hero__shape hero__shape--3" aria-hidden="true"></span>
+          <div class="hero__frame">
+            <picture>
+              <source
+                type="image/webp"
+                srcset="assets/screenshot/screenshot-640.webp 640w,
+                        assets/screenshot/screenshot-1280.webp 1280w,
+                        assets/screenshot/screenshot-1920.webp 1920w"
+                sizes="(min-width: 1024px) 52vw, 92vw">
+              <img
+                class="hero__image"
+                src="assets/screenshot/screenshot-1920.jpg"
+                srcset="assets/screenshot/screenshot-1920.jpg 1920w"
+                sizes="(min-width: 1024px) 52vw, 92vw"
+                width="1920" height="1042"
+                fetchpriority="high" decoding="async"
+                alt="Приложение Clarify: экран «Календарь» со списком задач на неделю, аккуратно разложенных по дням.">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-strip" id="trust-strip">
+      <div class="trust-strip__inner">
+        <p class="trust-strip__text">Мы в бете — будем рады, если вы одними из первых попробуете Clarify и расскажете, что получилось.</p>
+      </div>
+    </section>
+
+    <section class="benefits" id="benefits" aria-labelledby="benefits-heading">
+      <div class="benefits__inner">
+        <h2 class="benefits__heading" id="benefits-heading">Что вы получаете</h2>
+
+        <div class="benefits__grid">
+          <article class="benefits__card benefits__card--wide reveal">
+            <span class="benefits__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                <path d="M12 3 21 8 12 13 3 8Z"/>
+                <path d="M3 12 12 17 21 12"/>
+                <path d="M3 16 12 21 21 16"/>
+              </svg>
             </span>
-        </h1>
-        <p class="text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-            <span class="lang-ru">Удобный планировщик для личных дел и совместных проектов. Поможет сосредоточиться на главном без лишнего шума, возьмет на себя скучную рутину с помощью умного помощника и сохранит все ваши планы под контролем.</span>
-            <span class="lang-en hidden">A convenient planner for personal tasks and team projects. It helps you focus on what matters most without distractions, handles boring routines with a smart assistant, and keeps all your plans under control.</span>
-        </p>
-        <div class="flex flex-col sm:flex-row justify-center gap-4">
-            
-            <!-- Кнопка скачивания с добавленной ссылкой на Telegram -->
-            <a href="https://t.me/ClarifyPlan/5" target="_blank" class="px-8 py-4 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold rounded-lg shadow-lg shadow-indigo-500/30 transition">
-                <span class="lang-ru">Скачать Beta (Windows)</span><span class="lang-en hidden">Download Beta (Windows)</span>
-            </a>
-            
-            <a href="#features" class="px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-lg transition border border-slate-700">
-                <span class="lang-ru">Узнать больше</span><span class="lang-en hidden">Learn more</span>
-            </a>
+            <h3 class="benefits__title">Всё в одном месте</h3>
+            <p class="benefits__text">Задачи, встречи и напоминания собираются в одном списке — не нужно держать всё в голове или переключаться между приложениями.</p>
+          </article>
+
+          <article class="benefits__card benefits__card--large reveal">
+            <span class="benefits__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                <path d="M4 6h9"/>
+                <path d="M4 12h6"/>
+                <path d="M4 18h9"/>
+                <path d="M18.5 11l1 2.3 2.3 1-2.3 1-1 2.3-1-2.3-2.3-1 2.3-1Z"/>
+              </svg>
+            </span>
+            <h3 class="benefits__title">Подсказывает, что делать первым</h3>
+            <p class="benefits__text">Clarify смотрит на ваши дела и подсказывает, за что взяться в первую очередь, если непонятно, с чего начать.</p>
+          </article>
+
+          <article class="benefits__card reveal">
+            <span class="benefits__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                <path d="M6 17v-5a6 6 0 0 1 12 0v5"/>
+                <path d="M4 17h16"/>
+                <path d="M10 20a2 2 0 0 0 4 0"/>
+              </svg>
+            </span>
+            <h3 class="benefits__title">Ничего не теряется</h3>
+            <p class="benefits__text">Задача остаётся на виду, пока вы не отметите её сделанной, — забыть о ней не получится.</p>
+          </article>
+
+          <article class="benefits__card reveal">
+            <span class="benefits__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                <rect x="3" y="5" width="18" height="16" rx="2"/>
+                <path d="M3 10h18"/>
+                <path d="M8 3v4"/>
+                <path d="M16 3v4"/>
+              </svg>
+            </span>
+            <h3 class="benefits__title">Простой и понятный список</h3>
+            <p class="benefits__text">Никаких сложных настроек и разделов — только понятный список дел, где сразу видно, что делать дальше.</p>
+          </article>
         </div>
-        
-        <div class="mt-20 rounded-xl overflow-hidden border border-slate-700 shadow-2xl shadow-indigo-900/20 bg-slate-800">
-            <img src="screenshot.jpg" alt="Clarify Interface Preview" class="w-full h-auto">
-        </div>
-    </header>
-
-    <!-- Блок с фичами -->
-    <section id="features" class="max-w-6xl mx-auto px-6 py-24">
-        <h2 class="text-3xl font-bold text-center mb-16">
-            <span class="lang-ru">Инструменты для продуктивности</span><span class="lang-en hidden">Productivity Tools</span>
-        </h2>
-        <div class="grid md:grid-cols-2 gap-8">
-            
-            <div class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700/50 hover:border-indigo-500/50 transition">
-                <div class="text-4xl mb-4">🧘</div>
-                <h3 class="text-xl font-bold mb-3">Zen Mode</h3>
-                <p class="text-slate-400">
-                    <span class="lang-ru">Режим глубокой фокусировки. Отключает визуальный шум и уведомления, оставляя вас один на один с текущей задачей.</span>
-                    <span class="lang-en hidden">Deep focus mode. Disables visual noise and notifications, leaving you one-on-one with the current task.</span>
-                </p>
-            </div>
-
-            <div class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700/50 hover:border-indigo-500/50 transition">
-                <div class="text-4xl mb-4">🤖</div>
-                <h3 class="text-xl font-bold mb-3">
-                    <span class="lang-ru">AI-Ассистент</span><span class="lang-en hidden">AI Assistant</span>
-                </h3>
-                <p class="text-slate-400">
-                    <span class="lang-ru">Умный помощник распознает текст, помогает формулировать задачи и быстро распределять их по воркспейсам.</span>
-                    <span class="lang-en hidden">Smart helper recognizes text, helps formulate tasks, and quickly distributes them across workspaces.</span>
-                </p>
-            </div>
-
-            <div class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700/50 hover:border-indigo-500/50 transition">
-                <div class="text-4xl mb-4">❤️‍🔥</div>
-                <h3 class="text-xl font-bold mb-3">Team Pulse</h3>
-                <p class="text-slate-400">
-                    <span class="lang-ru">Аналитика нагрузки и радар выгорания. Система подскажет, если вы или члены команды взяли на себя слишком много.</span>
-                    <span class="lang-en hidden">Workload analytics and burnout radar. The system will alert you if you or your team members have taken on too much.</span>
-                </p>
-            </div>
-
-            <div class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700/50 hover:border-indigo-500/50 transition">
-                <div class="text-4xl mb-4">⚡</div>
-                <h3 class="text-xl font-bold mb-3">
-                    <span class="lang-ru">Мгновенная синхронизация</span><span class="lang-en hidden">Instant Synchronization</span>
-                </h3>
-                <p class="text-slate-400">
-                    <span class="lang-ru">Единый формат дат и мгновенное обновление состояния между локальной кэш-базой и облаком.</span>
-                    <span class="lang-en hidden">Unified date format and instant state updates between the local cache database and the cloud.</span>
-                </p>
-            </div>
-
-        </div>
+      </div>
     </section>
 
-    <!-- Блок безопасности -->
-    <section id="security" class="bg-slate-950 py-24 border-y border-slate-800">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold mb-6">
-                <span class="lang-ru">Enterprise-уровень безопасности</span><span class="lang-en hidden">Enterprise-grade Security</span>
-            </h2>
-            <p class="text-slate-400 mb-10 text-lg">
-                <span class="lang-ru">Мы знаем, как важна сохранность данных. Clarify построен на надежном стеке:</span>
-                <span class="lang-en hidden">We know how important data safety is. Clarify is built on a reliable stack:</span> 
-                <span class="text-indigo-400">Flutter</span>, 
-                <span class="text-green-400">Supabase</span>, 
-                <span class="text-cyan-400">FastAPI</span>.
-            </p>
-            <div class="flex flex-wrap justify-center gap-4 text-sm font-medium">
-                <span class="px-4 py-2 bg-slate-800 rounded-full border border-slate-700">
-                    <span class="lang-ru">Зашифрованное хранилище</span><span class="lang-en hidden">Encrypted Storage</span>
-                </span>
-                <span class="px-4 py-2 bg-slate-800 rounded-full border border-slate-700">
-                    <span class="lang-ru">Политики доступа RLS</span><span class="lang-en hidden">RLS Access Policies</span>
-                </span>
-                <span class="px-4 py-2 bg-slate-800 rounded-full border border-slate-700">
-                    <span class="lang-ru">Защищенное API</span><span class="lang-en hidden">Secured API</span>
-                </span>
-            </div>
-        </div>
+    <section class="how-it-works" id="how-it-works" aria-labelledby="how-it-works-heading">
+      <div class="how-it-works__inner">
+        <h2 class="how-it-works__heading" id="how-it-works-heading">Как это работает</h2>
+
+        <ol class="how-it-works__list">
+          <li class="how-it-works__step reveal">
+            <span class="how-it-works__number" aria-hidden="true">01</span>
+            <h3 class="how-it-works__title">Добавьте дело</h3>
+            <p class="how-it-works__text">Запишите задачу за пару секунд — как в обычной заметке, без лишних полей и настроек.</p>
+          </li>
+          <li class="how-it-works__step reveal">
+            <span class="how-it-works__number" aria-hidden="true">02</span>
+            <h3 class="how-it-works__title">Clarify раскладывает всё по местам</h3>
+            <p class="how-it-works__text">Приложение само расставляет приоритеты и распределяет дела по дням, пока вы этим не занимаетесь.</p>
+          </li>
+          <li class="how-it-works__step reveal">
+            <span class="how-it-works__number" aria-hidden="true">03</span>
+            <h3 class="how-it-works__title">Просто следуйте плану</h3>
+            <p class="how-it-works__text">Открываете день и сразу видите, за что браться в первую очередь — без раздумий и лишнего стресса.</p>
+          </li>
+        </ol>
+      </div>
     </section>
 
-    <!-- Подвал -->
-    <footer class="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm">
-        <div class="mb-4 md:mb-0">
-            &copy; 2026 Clarify. <span class="lang-ru">Все права защищены.</span><span class="lang-en hidden">All rights reserved.</span>
-        </div>
-        <div class="space-x-6">
-            <a href="privacy.html" class="hover:text-slate-300 transition font-medium text-slate-400">
-                <span class="lang-ru">Политика конфиденциальности</span><span class="lang-en hidden">Privacy Policy</span>
-            </a>
-        </div>
-    </footer>
+    <section class="testimonials" id="testimonials" aria-labelledby="testimonials-heading">
+      <div class="testimonials__inner">
+        <h2 class="testimonials__heading" id="testimonials-heading">Отзывы бета-тестеров</h2>
+        <p class="testimonials__note">Реальных отзывов пока немного, поэтому эти истории — иллюстративные примеры того, для каких повседневных дел придумывался Clarify. Настоящие отзывы появятся здесь, когда наберётся больше пользователей.</p>
 
-    <!-- Скрипт переключения языка -->
-    <script>
-        function toggleLanguage() {
-            // Находим все элементы с классом lang-ru и lang-en
-            const ruElements = document.querySelectorAll('.lang-ru');
-            const enElements = document.querySelectorAll('.lang-en');
-            
-            // Переключаем видимость (класс hidden)
-            ruElements.forEach(el => el.classList.toggle('hidden'));
-            enElements.forEach(el => el.classList.toggle('hidden'));
-        }
-    </script>
+        <div class="testimonials__grid">
+          <article class="testimonials__card" tabindex="0">
+            <span class="testimonials__avatar testimonials__avatar--navy" aria-hidden="true">М</span>
+            <blockquote class="testimonials__quote">
+              <p>Раньше дела по дому и рабочие встречи жили в трёх разных заметках. Теперь всё в одном списке — не приходится листать несколько экранов, чтобы вспомнить, что нужно сделать сегодня.</p>
+            </blockquote>
+            <p class="testimonials__author">Марина, бета-тестер</p>
+          </article>
+
+          <article class="testimonials__card" tabindex="0">
+            <span class="testimonials__avatar testimonials__avatar--blue-700" aria-hidden="true">И</span>
+            <blockquote class="testimonials__quote">
+              <p>Утром просто открываю Clarify — приложение само подсказывает, за что взяться в первую очередь, и не приходится решать это на голодный желудок.</p>
+            </blockquote>
+            <p class="testimonials__author">Игорь, бета-тестер</p>
+          </article>
+
+          <article class="testimonials__card" tabindex="0">
+            <span class="testimonials__avatar testimonials__avatar--blue-500" aria-hidden="true">А</span>
+            <blockquote class="testimonials__quote">
+              <p>Задача про оплату счёта провисела на виду три дня, пока я её не закрыл, — впервые за долгое время ничего не просрочил.</p>
+            </blockquote>
+            <p class="testimonials__author">Алексей, бета-тестер</p>
+          </article>
+
+          <article class="testimonials__card" tabindex="0">
+            <span class="testimonials__avatar testimonials__avatar--navy" aria-hidden="true">С</span>
+            <blockquote class="testimonials__quote">
+              <p>Я не люблю сложные приложения с кучей настроек. Тут ничего не пришлось настраивать — просто начала записывать дела, как в обычном блокноте.</p>
+            </blockquote>
+            <p class="testimonials__author">Света, бета-тестер</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="cta" aria-labelledby="cta-heading">
+      <div class="cta__inner">
+        <h2 class="cta__heading" id="cta-heading">Пора навести порядок в делах</h2>
+        <!-- TODO(product owner): real download URL / app store link is TBD —
+             replace href="#download" once provided. Do not invent a URL. -->
+        <a class="btn btn--primary cta__button" href="#download">Скачать приложение</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__top">
+        <div class="footer__about">
+          <div class="footer__brand">
+            <img class="footer__logo" src="assets/logo.png" alt="" width="36" height="36">
+            <span class="footer__wordmark">Clarify</span>
+          </div>
+          <p class="footer__description">Простое приложение-планировщик задач, которое помогает навести порядок в делах и не упускать важное.</p>
+        </div>
+
+        <div class="footer__nav-group">
+          <nav class="footer__nav" aria-label="Футер">
+            <ul class="footer__nav-list">
+              <li><a class="footer__nav-link" href="#benefits">Преимущества</a></li>
+              <li><a class="footer__nav-link" href="#how-it-works">Как это работает</a></li>
+              <li><a class="footer__nav-link" href="#testimonials">Отзывы</a></li>
+            </ul>
+          </nav>
+
+          <ul class="footer__links">
+            <li>
+              <!-- TODO(product owner): real download URL / app store link is TBD —
+                   replace href="#download" once provided. Do not invent a URL. -->
+              <a class="footer__link" href="#download">Скачать приложение</a>
+            </li>
+            <li><a class="footer__link" href="https://novamindlabs-clarify.github.io/">О проекте</a></li>
+          </ul>
+
+          <div class="footer__contacts">
+            <p class="footer__contacts-heading">Контакты</p>
+            <!-- TODO(product owner): add a real contact method (email/Telegram/social) here -->
+            <p class="footer__description">Свяжитесь с нами через страницу проекта: <a class="footer__link" href="https://novamindlabs-clarify.github.io/">novamindlabs-clarify.github.io</a></p>
+          </div>
+        </div>
+      </div>
+
+      <p class="footer__copyright">© 2026 Clarify. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
 </body>
 </html>
